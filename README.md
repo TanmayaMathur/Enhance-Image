@@ -58,10 +58,13 @@ Pixel Analysis: The script calculates the percentage of "clear" pixels (pixels w
 
 Customization
 Adjusting the Wiener Filter: You can tweak the psf (Point Spread Function) and noise variance (noise_var) in the deblur_image function to improve results for different types of blurring.
-
 KMeans Clustering: The number of clusters (n_clusters) can be adjusted for more or less aggressive noise reduction.
 
 Potential Improvements
 Implement parallel processing for faster video processing.
 Introduce options for different deblurring techniques.
 Add support for real-time video stream deblurring.
+
+![c](https://github.com/user-attachments/assets/ad405873-886e-4c33-a5a9-94b25282f122)
+
+
