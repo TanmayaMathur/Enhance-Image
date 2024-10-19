@@ -53,3 +53,7 @@ OpenCV for computer vision functionality.
 PyTorch for implementing the SRCNN model.
 face_recognition for face detection and recognition.
 MediaPipe for real-time face mesh generation.
+
+
+
+
