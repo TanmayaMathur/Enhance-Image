@@ -1,70 +1,55 @@
-Video Deblurring and Enhancement using Wiener Filter
+Video Enhancement and Face Recognition
 Overview
-This project focuses on enhancing the clarity of blurred videos using a combination of advanced image processing techniques. Each frame of a video is processed to reduce blur, remove noise, and improve visual quality through the following steps:
-
-Deblurring using Wiener deconvolution.
-Noise Reduction via KMeans clustering.
-Detail Enhancement using OpenCV's detailEnhance function.
-The project also provides a quantitative comparison of the deblurring process through a graph, which shows the percentage of clear pixels in the original, deblurred, and enhanced frames.
+This project implements a video enhancement application that utilizes various techniques such as super-resolution, deblurring, face detection, and face recognition. It includes a graphical user interface (GUI) built with PyQt5, enabling users to process videos and generate 3D face models from detected faces.
 
 Features
-Wiener Deconvolution: Used for image and video deblurring.
-KMeans Clustering: Reduces noise after deblurring.
-Image Enhancement: Adds more detail to the processed video.
-Clear Pixel Analysis: Calculates and displays the percentage of clear pixels in the original, deblurred, and enhanced videos.
-Frame-by-Frame Video Processing: Efficient handling of video input for real-time or batch processing.
+Super-Resolution: Enhances the quality of low-resolution frames using the SRCNN model.
+Deblurring: Applies a Wiener filter to reduce motion blur in video frames.
+Face Detection: Automatically detects and saves faces from each processed frame.
+Face Recognition: Compares detected faces against a database of known faces to find the best match.
+3D Face Mesh Generation: Creates a 3D mesh of detected faces with smooth skin-like shading.
+GUI Interface: A user-friendly interface to input video files and known face images.
+Requirements
+Make sure you have the following installed:
 
-Dependencies
-Ensure you have the following Python packages installed:
-
-OpenCV (cv2) - for video frame manipulation and image processing.
-NumPy - for numerical operations.
-scikit-learn - for KMeans clustering.
-matplotlib - for visualizing the graph of pixel clarity.
+Python 3.x
+OpenCV
+PyTorch
+torchvision
+Pillow
+face_recognition
+PyQt5
+mediapipe
+NumPy
+Matplotlib
+SciPy
 
 Usage
-Update the paths in the video_deblurring.py script:
+Input Video: Provide the path to the video file you want to enhance.
 
-Set input_video_path to the location of your input video file.
-Set output_video_path to your desired output file location.
-Run the script:
+Known Face Images: Enter a comma-separated list of paths to known face images that will be used for recognition.
 
-bash
-Copy code
-python video_deblurring.py
-The script will process each frame of the video by performing the following operations:
+Run the Application: Click the "Enhance Video" button to start processing.
 
-Deblurring: Apply Wiener deconvolution to each frame.
-Noise Reduction: Apply KMeans clustering to reduce noise.
-Detail Enhancement: Use OpenCV's detailEnhance function to improve frame clarity.
-Pixel Analysis: A graph will be generated to compare the percentage of clear pixels in the original, deblurred, and enhanced frames.
-The output video will be saved to the specified output_video_path.
+Optionally, enable the "3D Face Recognition" checkbox to generate 3D models of the recognized faces.
 
-Example
-Input:
-A blurry, noisy video file located at input_video.mp4.
-Output:
-A processed video saved to output_video.mp4, which has improved clarity, reduced noise, and enhanced details.
-Graph:
-A bar graph showing the percentage of clear pixels for the original, deblurred, and enhanced versions of the video.
-Code Explanation
-Deblurring: The Wiener filter uses a predefined Point Spread Function (PSF) to reverse the blurring effect by applying frequency domain transformations (FFT).
+Output: Processed frames will be saved in the output_frames directory, and the best matched face image will be displayed in the GUI.
 
-Clustering: KMeans is used to reduce the noise by clustering similar pixel values together, which helps in simplifying the image data and removing small artifacts.
+Code Overview
+SRCNN Model
+The SRCNN model is defined in model.py to perform super-resolution on low-resolution images. The model consists of three convolutional layers.
 
-Enhancement: cv2.detailEnhance() enhances the processed image by refining edges and making important details more visible.
+Wiener Filter
+The Wiener filter is implemented in wiener_filter.py to deblur images. It takes an image, a kernel, and a noise variance as inputs and returns the deblurred image.
 
-Pixel Analysis: The script calculates the percentage of "clear" pixels (pixels with intensity above a threshold) in each processed frame and visualizes the results using matplotlib.
+Face Detection and Recognition
+In face_detection.py, the application uses the face_recognition library to detect and recognize faces in the processed frames. Detected faces are saved, and comparisons are made against known face encodings.
 
-Customization
-Adjusting the Wiener Filter: You can tweak the psf (Point Spread Function) and noise variance (noise_var) in the deblur_image function to improve results for different types of blurring.
-KMeans Clustering: The number of clusters (n_clusters) can be adjusted for more or less aggressive noise reduction.
+3D Face Mesh Generation
+The 3D face mesh is generated using MediaPipe in face_detection.py, which processes the detected face and creates a 3D visualization based on facial landmarks.
 
-Potential Improvements
-Implement parallel processing for faster video processing.
-Introduce options for different deblurring techniques.
-Add support for real-time video stream deblurring.
-
-![c](https://github.com/user-attachments/assets/ad405873-886e-4c33-a5a9-94b25282f122)
-
-
+Acknowledgments
+OpenCV for computer vision functionality.
+PyTorch for implementing the SRCNN model.
+face_recognition for face detection and recognition.
+MediaPipe for real-time face mesh generation.
