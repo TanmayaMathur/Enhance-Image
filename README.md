@@ -54,6 +54,8 @@ PyTorch for implementing the SRCNN model.
 face_recognition for face detection and recognition.
 MediaPipe for real-time face mesh generation.
 
+output
+https://github.com/user-attachments/assets/08560a69-9034-475a-b733-40daa48f1ef8
 
 
 
